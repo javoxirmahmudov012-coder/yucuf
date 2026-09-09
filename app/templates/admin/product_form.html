@@ -1,0 +1,174 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}{% if product %}Kassetani Tahrirlash: {{ product.title }}{% else %}Yangi Kasseta Qo'shish{% endif %} | KASSETALAR.UZ Admin{% endblock %}
+{% block header_title %}{% if product %}Kassetani Tahrirlash{% else %}Yangi Kasseta Qo'shish{% endif %}{% endblock %}
+
+{% block admin_content %}
+<div class="max-w-4xl mx-auto space-y-6">
+  
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-bold text-white">
+      {% if product %}Tahrirlash: "{{ product.title }}"{% else %}Yangi Kasseta Yaratish{% endif %}
+    </h2>
+    <a href="/admin/products" class="text-xs text-gray-400 hover:text-white flex items-center gap-1">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Mahsulotlarga qaytish
+    </a>
+  </div>
+
+  <form action="{% if product %}/admin/products/{{ product.id }}/edit{% else %}/admin/products/new{% endif %}" method="POST" class="bg-[#161920] border border-gray-800 rounded-2xl p-8 space-y-6">
+    
+    <!-- 1. Asosiy Ma'lumotlar -->
+    <div class="space-y-4">
+      <h3 class="text-sm font-bold text-amber-500 uppercase tracking-wider border-b border-gray-800 pb-2">1. Asosiy Ma'lumotlar</h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Kasseta / Albom Nomi *</label>
+          <input type="text" name="title" required value="{{ product.title if product else '' }}" placeholder="Masalan: Majnuntol" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Guruh / Ijrochi *</label>
+          <input type="text" name="artist" required value="{{ product.artist if product else '' }}" placeholder="Masalan: Yalla Guruhi" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Janri *</label>
+          <select name="genre" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+            <option value="Retro O'zbek" {% if product and product.genre == "Retro O'zbek" %}selected{% endif %}>Retro O'zbek</option>
+            <option value="Jahon Rok va Pop" {% if product and product.genre == "Jahon Rok va Pop" %}selected{% endif %}>Jahon Rok va Pop</option>
+            <option value="Synthwave & Lo-Fi" {% if product and product.genre == "Synthwave & Lo-Fi" %}selected{% endif %}>Synthwave & Lo-Fi</option>
+            <option value="Hip-Hop & Rap" {% if product and product.genre == "Hip-Hop & Rap" %}selected{% endif %}>Hip-Hop & Rap</option>
+            <option value="Toza Vintage Kassetalar" {% if product and product.genre == "Toza Vintage Kassetalar" %}selected{% endif %}>Toza Vintage Kassetalar</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Ishlab Chiqarilgan Yili</label>
+          <input type="number" name="release_year" value="{{ product.release_year if product else 1995 }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Holati</label>
+          <select name="condition" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+            <option value="Original Vintage" {% if product and product.condition == "Original Vintage" %}selected{% endif %}>Original Vintage</option>
+            <option value="Yangi muhrlangan" {% if product and product.condition == "Yangi muhrlangan" %}selected{% endif %}>Yangi muhrlangan (Sealed)</option>
+            <option value="Kolleksion" {% if product and product.condition == "Kolleksion" %}selected{% endif %}>Kolleksion (Nodir)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Lenta Turi</label>
+          <select name="tape_type" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+            <option value="Type I (Normal)" {% if product and product.tape_type == "Type I (Normal)" %}selected{% endif %}>Type I (Normal IEC I)</option>
+            <option value="Type II (High/CrO2)" {% if product and product.tape_type == "Type II (High/CrO2)" %}selected{% endif %}>Type II (High/Chrome IEC II)</option>
+            <option value="Type IV (Metal)" {% if product and product.tape_type == "Type IV (Metal)" %}selected{% endif %}>Type IV (Metal IEC IV)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Davomiyligi (daqiqa)</label>
+          <input type="number" name="duration_minutes" value="{{ product.duration_minutes if product else 60 }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Mamlakat & Leybl</label>
+          <input type="text" name="label" value="{{ product.label if product else 'Tarona Records' }}" placeholder="Masalan: Melodiya" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Narx va Ombor -->
+    <div class="space-y-4">
+      <h3 class="text-sm font-bold text-amber-500 uppercase tracking-wider border-b border-gray-800 pb-2">2. Narx va Sklad</h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Sotuv Narxi (so'mda) *</label>
+          <input type="number" name="price" required value="{{ product.price if product else 120000 }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Eski Narxi (Chegirma uchun)</label>
+          <input type="number" name="old_price" value="{{ product.old_price if product and product.old_price else '' }}" placeholder="Ixtiyoriy" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Ombordagi Soni (dona) *</label>
+          <input type="number" name="stock" required value="{{ product.stock if product else 5 }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 pt-2">
+        <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+          <input type="checkbox" name="is_featured" value="true" {% if product and product.is_featured %}checked{% endif %} class="text-amber-500 rounded">
+          <span>Bosh sahifada ko'rsatish (Featured)</span>
+        </label>
+        <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+          <input type="checkbox" name="is_new" value="true" {% if not product or product.is_new %}checked{% endif %} class="text-amber-500 rounded">
+          <span>Yangi reliz (New tag)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 3. Media & Audio Namuna -->
+    <div class="space-y-4">
+      <h3 class="text-sm font-bold text-amber-500 uppercase tracking-wider border-b border-gray-800 pb-2">3. Media & Audio Namuna</h3>
+      
+      <div>
+        <label class="block text-xs text-gray-300 font-medium mb-1.5">Kasseta Rasmi (URL)</label>
+        <input type="url" name="image_url" value="{{ product.image_url if product else 'https://images.unsplash.com/photo-1594623930572-300a3011d9ae?w=800' }}" placeholder="https://..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Audio Namuna URL (MP3)</label>
+          <input type="url" name="audio_sample_url" value="{{ product.audio_sample_url if product else 'https://cdn.freesound.org/previews/563/563821_12534887-lq.mp3' }}" placeholder="https://..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Audio Namuna Nomi</label>
+          <input type="text" name="audio_sample_title" value="{{ product.audio_sample_title if product else '' }}" placeholder="Masalan: Yalla - Majnuntol (Demo)" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Tavsif va Treklist -->
+    <div class="space-y-4">
+      <h3 class="text-sm font-bold text-amber-500 uppercase tracking-wider border-b border-gray-800 pb-2">4. Tavsif va Treklist</h3>
+      
+      <div>
+        <label class="block text-xs text-gray-300 font-medium mb-1.5">Kasseta haqida batafsil tavsif</label>
+        <textarea name="description" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white">{{ product.description if product else '' }}</textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">A-Tomoni Treklari (Tracklist Side A)</label>
+          <textarea name="tracklist_a" rows="4" placeholder="1. Trek nomi (3:45)..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">{{ product.tracklist_a if product else '' }}</textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">B-Tomoni Treklari (Tracklist Side B)</label>
+          <textarea name="tracklist_b" rows="4" placeholder="5. Trek nomi (4:12)..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white font-mono">{{ product.tracklist_b if product else '' }}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-4 border-t border-gray-800 flex items-center justify-end gap-3">
+      <a href="/admin/products" class="px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium text-xs rounded-xl transition-colors">
+        Bekor qilish
+      </a>
+      <button type="submit" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl shadow transition-colors">
+        {% if product %}O'zgarishlarni Saqlash{% else %}Kassetani Saqlash{% endif %}
+      </button>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}
