@@ -1,0 +1,110 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Promokodlar Boshqaruvi | KASSETALAR.UZ Admin{% endblock %}
+{% block header_title %}Promokodlar va Chegirmalar{% endblock %}
+
+{% block admin_content %}
+<div class="space-y-8">
+  
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-white">Promokodlar Ro'yxati</h2>
+      <p class="text-xs text-gray-400 mt-0.5">Mijozlar uchun chegirma promokodlarini yaratish va monitoring qilish</p>
+    </div>
+
+    <button onclick="document.getElementById('new-promo-modal').classList.toggle('hidden')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl shadow transition-colors flex items-center gap-2">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span>Yangi Promokod Yaratish</span>
+    </button>
+  </div>
+
+  <!-- New Promo Form (Modal/Drawer) -->
+  <div id="new-promo-modal" class="hidden p-6 bg-[#161920] border border-gray-700 rounded-2xl space-y-4">
+    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Yangi Promokod Qo'shish</h3>
+    <form action="/admin/promos/new" method="POST" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+      <div>
+        <label class="block text-gray-400 mb-1">Promokod Kodi *</label>
+        <input type="text" name="code" required placeholder="RETRO2026" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono uppercase">
+      </div>
+
+      <div>
+        <label class="block text-gray-400 mb-1">Chegirma Turi</label>
+        <select name="discount_type" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white">
+          <option value="percent">Foizda (%)</option>
+          <option value="fixed">Qat'iy Summa (so'mda)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-400 mb-1">Chegirma Miqdori *</label>
+        <input type="number" name="discount_value" required placeholder="10 (%) yoki 25000 (so'm)" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono">
+      </div>
+
+      <div>
+        <label class="block text-gray-400 mb-1">Minimal Xarid Summasi (so'm)</label>
+        <input type="number" name="min_order_amount" value="100000" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono">
+      </div>
+
+      <div>
+        <label class="block text-gray-400 mb-1">Maksimal Ishlatish Soni</label>
+        <input type="number" name="max_uses" value="100" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white font-mono">
+      </div>
+
+      <div>
+        <label class="block text-gray-400 mb-1">Tavsif</label>
+        <input type="text" name="description" placeholder="Aksiya sababi..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-white">
+      </div>
+
+      <div class="sm:col-span-3 flex justify-end gap-2 pt-2">
+        <button type="button" onclick="document.getElementById('new-promo-modal').classList.add('hidden')" class="px-4 py-2 bg-gray-800 text-gray-300 rounded-xl">Bekor qilish</button>
+        <button type="submit" class="px-5 py-2 bg-amber-500 text-black font-bold rounded-xl shadow">Saqlash</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Promos Table -->
+  <div class="bg-[#161920] border border-gray-800 rounded-2xl overflow-hidden">
+    <table class="w-full text-left text-xs">
+      <thead class="bg-gray-900/80 text-gray-400 uppercase tracking-wider border-b border-gray-800">
+        <tr>
+          <th class="py-3.5 px-4">Kod</th>
+          <th class="py-3.5 px-4">Chegirma</th>
+          <th class="py-3.5 px-4">Min. Summa</th>
+          <th class="py-3.5 px-4">Ishlatildi / Limit</th>
+          <th class="py-3.5 px-4">Holat</th>
+          <th class="py-3.5 px-4 text-right">Amal</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-800">
+        {% for pr in promos %}
+        <tr class="hover:bg-gray-800/30 transition-colors">
+          <td class="py-3.5 px-4 font-mono font-bold text-amber-400 text-sm">{{ pr.code }}</td>
+          <td class="py-3.5 px-4 font-semibold text-white">
+            {% if pr.discount_type == 'percent' %}
+            {{ pr.discount_value }}%
+            {% else %}
+            {{ "{:,}".format(pr.discount_value) }} so'm
+            {% endif %}
+          </td>
+          <td class="py-3.5 px-4 text-gray-300">{{ "{:,}".format(pr.min_order_amount) }} so'm</td>
+          <td class="py-3.5 px-4 font-mono text-gray-400">{{ pr.used_count }} / {{ pr.max_uses }}</td>
+          <td class="py-3.5 px-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold {% if pr.is_active %}bg-emerald-500/20 text-emerald-400 border border-emerald-500/30{% else %}bg-gray-800 text-gray-500{% endif %}">
+              {{ 'FAOL' if pr.is_active else 'NOFAOL' }}
+            </span>
+          </td>
+          <td class="py-3.5 px-4 text-right">
+            <form action="/admin/promos/{{ pr.id }}/toggle" method="POST" class="inline">
+              <button type="submit" class="text-xs text-gray-400 hover:text-white">
+                {{ 'O\'chirish' if pr.is_active else 'Yoqish' }}
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
