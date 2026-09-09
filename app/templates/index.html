@@ -1,0 +1,608 @@
+{% extends "base.html" %}
+
+{% block title %}UZRETRO.UZ — Video & Audio Kassetalarni Fleshka va Cloudga O'tkazish Xizmati{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-8 pb-16 lg:py-20 border-b border-[#143a4d] bg-gradient-to-b from-[#0a2330] via-[#071822] to-[#051118]">
+  <!-- Background Glows -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Text -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-wide">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span>VIDEO KASSETA • FLESHKA • CLOUD • PREMIUM XIZMATLAR</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+          Eski To'ylar va Xotiralarni <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">Fleshkaga O'tkazamiz!</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed">
+          30-40 yillik chang bosgan, yirtilgan yoki mog'orlagan <b>VHS video kassetalar</b>, to'y yozuvlari va audio lentalaringizni professional laboratoriyada tozalaymiz, ovoz va rangini tiniqlashtirib <b>Fleshka, Hard disk va Telegram / Cloud</b> orqali taqdim etamiz.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="/catalog" class="px-8 py-4 bg-amber-500 hover:bg-amber-400 active:scale-95 text-black font-bold text-base rounded-2xl transition-all shadow-xl shadow-amber-500/25 flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+            Tariflar va Buyurtma berish
+          </a>
+          <a href="#jarayon" class="px-6 py-4 bg-[#0d2b3d] hover:bg-[#12384f] border border-[#1d5270] text-white font-semibold text-base rounded-2xl transition-all flex items-center gap-2">
+            <i data-lucide="play-circle" class="w-5 h-5 text-amber-400"></i>
+            Qanday ishlaydi? (Jarayon)
+          </a>
+        </div>
+
+        <!-- Trust Stats Badges -->
+        <div class="grid grid-cols-4 gap-3 pt-6 border-t border-[#143a4d]">
+          <div class="text-center lg:text-left">
+            <div class="text-xl sm:text-2xl font-black text-amber-400">31.8K+</div>
+            <div class="text-[11px] text-gray-400">Instagram obunachi</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-xl sm:text-2xl font-black text-white">10,000+</div>
+            <div class="text-[11px] text-gray-400">Tiklagan kassetalar</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-xl sm:text-2xl font-black text-emerald-400">100%</div>
+            <div class="text-[11px] text-gray-400">Maxfiylik kafolati</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-xl sm:text-2xl font-black text-cyan-400">24 Soat</div>
+            <div class="text-[11px] text-gray-400">Kuryer olib ketadi</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Visual: Vintage Cassette Shell & Video Badge -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="w-full max-w-md bg-[#08202d] border-2 border-amber-500/40 rounded-3xl p-6 shadow-2xl shadow-black/80 space-y-5 relative">
+          
+          <div class="flex items-center justify-between border-b border-[#143a4d] pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">VHS / AUDIO RESTORATION</span>
+            </div>
+            <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">UZRETRO LAB</span>
+          </div>
+
+          <!-- Cassette Paper Label -->
+          <div class="cassette-label p-4 space-y-3 rounded-2xl bg-[#0e2c3d] border border-[#1b4d68]">
+            <div class="flex justify-between items-center border-b border-[#1b4d68] pb-2 text-white">
+              <span class="font-bold text-xs tracking-wider uppercase text-amber-400">1990-2005 TO'Y ARXIVI</span>
+              <span class="font-black text-sm tracking-tight text-white">UZRETRO.UZ</span>
+              <span class="font-bold text-xs text-cyan-300">HQ MP4</span>
+            </div>
+
+            <!-- Tape Window with Reels -->
+            <div class="cassette-window h-20 p-2 flex items-center justify-around bg-[#05141c] rounded-xl">
+              <!-- Left Reel -->
+              <div class="w-12 h-12 rounded-full border-2 border-amber-400/80 bg-neutral-900 flex items-center justify-center spinning-reel shadow-inner">
+                <div class="w-5 h-5 rounded-full border border-amber-400 flex items-center justify-center">
+                  <div class="w-2 h-2 bg-amber-400 rounded-full"></div>
+                </div>
+              </div>
+
+              <!-- Magnetic Tape View -->
+              <div class="flex-1 mx-3 h-8 bg-[#020b0f] rounded border border-[#1b4d68] flex items-center justify-center relative overflow-hidden">
+                <div class="w-full h-3 bg-gradient-to-r from-amber-800 via-amber-600 to-amber-800 opacity-80"></div>
+                <span class="absolute text-[9px] font-mono text-amber-400 font-bold">DIGITIZING... 100%</span>
+              </div>
+
+              <!-- Right Reel -->
+              <div class="w-12 h-12 rounded-full border-2 border-amber-400/80 bg-neutral-900 flex items-center justify-center spinning-reel shadow-inner">
+                <div class="w-5 h-5 rounded-full border border-amber-400 flex items-center justify-center">
+                  <div class="w-2 h-2 bg-amber-400 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center pt-1 space-y-1">
+              <div class="text-xs font-bold text-white">VHS • VHS-C • MiniDV • Hi8 • Audio Cassette</div>
+              <div class="text-[11px] text-amber-300/80">Fleshka, Hard Disk yoki Telegramga sifatli ko'chirish</div>
+            </div>
+          </div>
+
+          <!-- Action list in hero card -->
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>Ovoz shovqini filtrlanadi (Dolby Audio Restoration)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>Yirtilgan yoki uzilgan lentalar ulab beriladi</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>Toshkentda kuryer uyingizdan olib ketadi va yetkazadi</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Instagram Highlights Navigation Circles (Matching user screenshot!) -->
+<section class="py-10 bg-[#071822] border-b border-[#143a4d]">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex items-center justify-around sm:justify-center sm:gap-12 overflow-x-auto py-2">
+      
+      <!-- 1. Buyurtma berish -->
+      <a href="/catalog" class="flex flex-col items-center gap-2 group flex-shrink-0">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#084d67] to-[#0d739b] border-2 border-amber-400/80 p-1 shadow-lg shadow-cyan-950 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400 transition-all">
+          <div class="w-full h-full rounded-full bg-[#082a38] flex items-center justify-center text-amber-400">
+            <i data-lucide="phone-call" class="w-7 h-7"></i>
+          </div>
+        </div>
+        <span class="text-xs font-semibold text-gray-200 group-hover:text-amber-400 transition-colors">Buyurtma berish</span>
+      </a>
+
+      <!-- 2. Telegram -->
+      <a href="https://t.me" target="_blank" class="flex flex-col items-center gap-2 group flex-shrink-0">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#084d67] to-[#0d739b] border-2 border-amber-400/80 p-1 shadow-lg shadow-cyan-950 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400 transition-all">
+          <div class="w-full h-full rounded-full bg-[#082a38] flex items-center justify-center text-amber-400">
+            <i data-lucide="send" class="w-7 h-7"></i>
+          </div>
+        </div>
+        <span class="text-xs font-semibold text-gray-200 group-hover:text-amber-400 transition-colors">Telegram</span>
+      </a>
+
+      <!-- 3. Manzil -->
+      <a href="/contact" class="flex flex-col items-center gap-2 group flex-shrink-0">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#084d67] to-[#0d739b] border-2 border-amber-400/80 p-1 shadow-lg shadow-cyan-950 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400 transition-all">
+          <div class="w-full h-full rounded-full bg-[#082a38] flex items-center justify-center text-amber-400">
+            <i data-lucide="map-pin" class="w-7 h-7"></i>
+          </div>
+        </div>
+        <span class="text-xs font-semibold text-gray-200 group-hover:text-amber-400 transition-colors">Manzil</span>
+      </a>
+
+      <!-- 4. Mijozlar fikri -->
+      <a href="#reviews" class="flex flex-col items-center gap-2 group flex-shrink-0">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#084d67] to-[#0d739b] border-2 border-amber-400/80 p-1 shadow-lg shadow-cyan-950 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400 transition-all">
+          <div class="w-full h-full rounded-full bg-[#082a38] flex items-center justify-center text-amber-400">
+            <i data-lucide="message-square" class="w-7 h-7"></i>
+          </div>
+        </div>
+        <span class="text-xs font-semibold text-gray-200 group-hover:text-amber-400 transition-colors">Mijozlar fikri</span>
+      </a>
+
+      <!-- 5. Jarayon -->
+      <a href="#jarayon" class="flex flex-col items-center gap-2 group flex-shrink-0">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#084d67] to-[#0d739b] border-2 border-amber-400/80 p-1 shadow-lg shadow-cyan-950 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400 transition-all">
+          <div class="w-full h-full rounded-full bg-[#082a38] flex items-center justify-center text-amber-400">
+            <i data-lucide="settings" class="w-7 h-7"></i>
+          </div>
+        </div>
+        <span class="text-xs font-semibold text-gray-200 group-hover:text-amber-400 transition-colors">Jarayon</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Jarayon: Qanday Ishlaymiz? -->
+<section id="jarayon" class="py-16 bg-[#051118] border-b border-[#143a4d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 mb-3">
+        <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Ish Jarayoni
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">Xotiralarni Fleshkaga O'tkazish 4 Bosqichda</h2>
+      <p class="text-sm text-gray-400 mt-2">Sizdan faqat kassetani topshirish talab qilinadi — qolgan barcha texnik jarayonlarni laboratoriyamiz o'z zimmasiga oladi.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      
+      <!-- Step 1 -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 relative group hover:border-amber-500/40 transition-all">
+        <div class="text-4xl font-black text-amber-500/20 absolute top-4 right-4">01</div>
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4">
+          <i data-lucide="truck" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">1. Qabul qilish / Kuryer</h3>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Saytdan ariza qoldirasiz yoki kuryerimiz uyingizdan kelib kassetalarni maxsus seyf-paketda olib ketadi.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 relative group hover:border-amber-500/40 transition-all">
+        <div class="text-4xl font-black text-amber-500/20 absolute top-4 right-4">02</div>
+        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">2. Tozalash & Tiklash</h3>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Magnit lenta maxsus antistatik usulda tozalanadi, uzilgan joylari ulanadi va mexanizmi sozlanadi.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 relative group hover:border-amber-500/40 transition-all">
+        <div class="text-4xl font-black text-amber-500/20 absolute top-4 right-4">03</div>
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4">
+          <i data-lucide="video" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">3. Raqamlashtirish (HQ)</h3>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Professional Sony/Panasonic apparatlarida MP4 Full HD formatga o'tkazilib, ovoz shovqini tozalanadi.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 relative group hover:border-amber-500/40 transition-all">
+        <div class="text-4xl font-black text-amber-500/20 absolute top-4 right-4">04</div>
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
+          <i data-lucide="hard-drive" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">4. Fleshka & Cloud</h3>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Tayyor to'y videosi yangi Fleshka, Hard disk va Telegram havolasiga yuklanib, uyingizga yetkaziladi.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- XIZMAT TARIFLARI — Har 1 Kasseta Uchun               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section id="tariflar" class="py-20 bg-[#071822] border-b border-[#143a4d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 mb-3">
+        <i data-lucide="tag" class="w-3.5 h-3.5"></i> Xizmat Paketlari
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">Xizmat Tariflari</h2>
+      <p class="text-sm text-gray-400 mt-2">O'zingizga mos tarifni tanlang va buyurtma bering.</p>
+
+      <!-- Per-cassette notice -->
+      <div class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500/15 border border-amber-400/50 rounded-2xl">
+        <span class="text-amber-400 text-lg">📼</span>
+        <span class="text-amber-300 font-black text-sm">Barcha narxlar <span class="underline underline-offset-4">1 DONA KASSETA</span> uchun amal qiladi</span>
+      </div>
+    </div>
+
+    <!-- 4 Tarif Kartochkalar -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+
+      <!-- ── START $20 ── -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl overflow-hidden flex flex-col shadow-xl hover:border-amber-400/50 hover:-translate-y-1 transition-all duration-300">
+        <!-- Per-cassette badge strip -->
+        <div class="bg-[#05141c] border-b border-[#143a4d] px-5 py-2 flex items-center justify-between">
+          <span class="text-[11px] font-black text-amber-400 uppercase tracking-widest">📼 1 Kasseta Uchun</span>
+          <span class="text-[10px] text-gray-500">Bir martalik to'lov</span>
+        </div>
+        <div class="p-6 flex flex-col gap-5 flex-1">
+          <div>
+            <h3 class="text-2xl font-black text-white mb-2">Start</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-black text-amber-400">$20</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 flex-1">
+            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Tarifi ichiga nimalar kiradi:</p>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kassetadan fleshka, Hard diskka ko'chirib berish</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-200/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Fleshka yoki Hard disk <b class="text-amber-300">mijoz tomonidan beriladi</b></span>
+            </div>
+          </div>
+
+          <a href="/catalog" class="w-full py-3 text-center bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 mt-auto">
+            Tarifni tanlash
+          </a>
+        </div>
+      </div>
+
+      <!-- ── STANDART $30 ── -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl overflow-hidden flex flex-col shadow-xl hover:border-amber-400/50 hover:-translate-y-1 transition-all duration-300">
+        <div class="bg-[#05141c] border-b border-[#143a4d] px-5 py-2 flex items-center justify-between">
+          <span class="text-[11px] font-black text-amber-400 uppercase tracking-widest">📼 1 Kasseta Uchun</span>
+          <span class="text-[10px] text-gray-500">Bir martalik to'lov</span>
+        </div>
+        <div class="p-6 flex flex-col gap-5 flex-1">
+          <div>
+            <h3 class="text-2xl font-black text-white mb-2">Standart</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-black text-amber-400">$30</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 flex-1">
+            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Tarifi ichiga nimalar kiradi:</p>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kasseta avval tozalanadi (sifat yaxshilash, rang tiklash, yorqinlikni to'g'rilash, ovoz tozalash)</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kassetadan fleshka, Hard diskka ko'chirib berish</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-emerald-300">
+              <div class="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-emerald-400"></i>
+              </div>
+              <span><b>8 GB fleshka BONUS</b> qilib yozib beriladi</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Yetkazib berish xizmati (Yandex, BTS...)</span>
+            </div>
+          </div>
+
+          <a href="/catalog" class="w-full py-3 text-center bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 mt-auto">
+            Tarifni tanlash
+          </a>
+        </div>
+      </div>
+
+      <!-- ── PRO $50 ── -->
+      <div class="bg-[#08202d] border-2 border-amber-400/70 rounded-2xl overflow-hidden flex flex-col shadow-2xl shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 bg-amber-500 text-black text-[11px] font-black px-5 py-1 rounded-full uppercase tracking-wider shadow-lg">
+          ⭐ Ko'p tanlangan
+        </div>
+        <div class="bg-[#05141c] border-b border-amber-400/30 px-5 py-2 flex items-center justify-between mt-1">
+          <span class="text-[11px] font-black text-amber-400 uppercase tracking-widest">📼 1 Kasseta Uchun</span>
+          <span class="text-[10px] text-gray-500">Bir martalik to'lov</span>
+        </div>
+        <div class="p-6 flex flex-col gap-5 flex-1">
+          <div>
+            <h3 class="text-2xl font-black text-white mb-2">PRO</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-black text-amber-400">$50</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 flex-1">
+            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Tarifi ichiga nimalar kiradi:</p>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kasseta avval tozalanadi (sifat yaxshilash, rang tiklash, yorqinlikni to'g'rilash, ovoz tozalash)</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kassetadan fleshka, Hard diskka ko'chirib berish</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>8 GB fleshka yozib beriladi</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-emerald-300">
+              <div class="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-emerald-400"></i>
+              </div>
+              <span><b>QR code</b> beriladi</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-emerald-300">
+              <div class="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-emerald-400"></i>
+              </div>
+              <span><b>Shaxsiy yopiq YouTube link</b> — istalgan vaqtda, istalgan joydan, istalgan qurilmadan ko'rish imkoniyati bor</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-gray-300">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Olib ketish va yetkazib berish xizmati (Yandex, BTS...)</span>
+            </div>
+          </div>
+
+          <a href="/catalog" class="w-full py-3 text-center bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 mt-auto">
+            Tarifni tanlash
+          </a>
+        </div>
+      </div>
+
+      <!-- ── VIP $100 ── -->
+      <div class="bg-gradient-to-b from-[#1c3d12] to-[#0d2a0a] border border-amber-600/60 rounded-2xl overflow-hidden flex flex-col shadow-2xl shadow-amber-900/20 hover:-translate-y-1 transition-all duration-300">
+        <div class="bg-black/30 border-b border-amber-500/30 px-5 py-2 flex items-center justify-between">
+          <span class="text-[11px] font-black text-amber-400 uppercase tracking-widest">📼 1 Kasseta Uchun</span>
+          <span class="text-[10px] text-amber-700">Bir martalik to'lov</span>
+        </div>
+        <div class="p-6 flex flex-col gap-5 flex-1">
+          <div>
+            <h3 class="text-2xl font-black text-amber-400 mb-2">VIP</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-black text-amber-400">$100</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 flex-1">
+            <p class="text-[11px] font-bold text-amber-300/70 uppercase tracking-wider mb-3">Tarifi ichiga nimalar kiradi:</p>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kasseta avval tozalanadi (sifat yaxshilash, rang tiklash, yorqinlikni to'g'rilash, ovoz tozalash)</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Video kassetadan fleshka, Hard diskka ko'chirib berish</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span><b class="text-amber-300">16 GB fleshka</b> yozib beriladi</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>QR code beriladi</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Shaxsiy yopiq YouTube link — istalgan vaqtda, istalgan joydan, istalgan qurilmadan ko'rish imkoniyati bor</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-emerald-300/90">
+              <div class="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-emerald-400"></i>
+              </div>
+              <span><b class="text-emerald-300">Duolar, tabriklar, qadrli insonlar nutqi alohida rolik qilinadi</b> (Masalan: Qarindoshlar guruhi uchun 2-3 daqiqalik yoshi ulug' insonlarning o'sha paytdagi gaplari, duolari)</span>
+            </div>
+            <div class="flex items-start gap-2.5 text-xs text-amber-100/80">
+              <div class="w-4 h-4 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-2.5 h-2.5 text-amber-400"></i>
+              </div>
+              <span>Olib ketish va yetkazib berish xizmati (Yandex, BTS...)</span>
+            </div>
+          </div>
+
+          <a href="/catalog" class="w-full py-3 text-center bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 mt-auto">
+            Tarifni tanlash
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Admin Contact Banner -->
+    <div class="mt-10 bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0">
+          <i data-lucide="phone" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">Savol bor? Admin bilan bog'laning</p>
+          <p class="text-xs text-gray-400">Kasseta soni, tarif yoki kuryer haqida maslahat</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="tel:+998877700233" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm rounded-xl flex items-center gap-2 transition-all shadow">
+          <i data-lucide="phone-call" class="w-4 h-4"></i> 87-770-02-33
+        </a>
+        <a href="https://instagram.com/uzretrouz" target="_blank" class="px-5 py-2.5 bg-[#05141c] hover:bg-[#07202f] border border-[#1b4d68] text-white font-bold text-sm rounded-xl flex items-center gap-2 transition-all">
+          <i data-lucide="instagram" class="w-4 h-4 text-amber-400"></i> @uzretrouz
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Customer Reviews Section (Mijozlar Fikri) -->
+<section id="reviews" class="py-16 bg-[#051118] border-b border-[#143a4d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 mb-3">
+        <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i> Mijozlar Fikri
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">Instagram @uzretro.uz Obunachilari Fikrlari</h2>
+      <p class="text-sm text-gray-400 mt-2">O'z xotiralarini bizga ishonib topshirgan yuzlab oilalarning samimiy minnatdorchiliklari.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4">
+        <div class="flex items-center gap-1 text-amber-400">
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+        </div>
+        <p class="text-xs text-gray-300 leading-relaxed italic">
+          "Ota-onamning 1996-yilgi to'y VHS kassetasini Premium tarifda topshirdik. 64GB fleshkaga yozib, telegramdan ham tashlab berishdi. Videodagi ranglar va ovoz shunchalik tiniq bo'libdiki, butun oilamiz yig'lab ko'rdik. Rahmat UZRETRO.UZ!"
+        </p>
+        <div class="border-t border-[#143a4d] pt-3 flex items-center justify-between">
+          <span class="text-xs font-bold text-white">Azizbek & Dilnoza</span>
+          <span class="text-[11px] text-gray-400">Toshkent shahri</span>
+        </div>
+      </div>
+
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4">
+        <div class="flex items-center gap-1 text-amber-400">
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+        </div>
+        <p class="text-xs text-gray-300 leading-relaxed italic">
+          "Kassetamiz 20 yildan beri shkafda chang bosib yotgan, uzilib qolgan joylari ham bor edi. Hammasini tozalab, ulab fleshkaga o'tkazib berishdi. Kuryer uydan olib ketib, uyga olib keldi. Juda qulay!"
+        </p>
+        <div class="border-t border-[#143a4d] pt-3 flex items-center justify-between">
+          <span class="text-xs font-bold text-white">Sardor Rahimov</span>
+          <span class="text-[11px] text-gray-400">Samarqand</span>
+        </div>
+      </div>
+
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4">
+        <div class="flex items-center gap-1 text-amber-400">
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+        </div>
+        <p class="text-xs text-gray-300 leading-relaxed italic">
+          "Instagramdagi @uzretro.uz sahifasini ko'rib buyurtma bergandim. 31 mingdan ortiq obunachisi bekorga ishonmas ekan. Ish professional darajada qilindi!"
+        </p>
+        <div class="border-t border-[#143a4d] pt-3 flex items-center justify-between">
+          <span class="text-xs font-bold text-white">Nigora Alimova</span>
+          <span class="text-[11px] text-gray-400">Farg'ona</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Banner -->
+<section class="py-16 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-black">
+  <div class="max-w-5xl mx-auto px-4 text-center space-y-6">
+    <h2 class="text-3xl sm:text-4xl font-black">Xotiralar Yo'qolib Ketishiga Yo'l Qo'ymang!</h2>
+    <p class="text-base sm:text-lg max-w-2xl mx-auto font-medium">
+      Magnit lentalar har yili o'z xususiyatini yo'qotib boradi. Bugunoq kassetalaringizni fleshka yoki xavfsiz bulutli xotiraga o'tkazib oling.
+    </p>
+    <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+      <a href="/checkout" class="px-8 py-4 bg-black hover:bg-neutral-900 text-white font-bold rounded-2xl transition-all shadow-xl shadow-black/30">
+        Kuryer Chaqirish & Buyurtma
+      </a>
+      <a href="https://t.me" target="_blank" class="px-6 py-4 bg-white/20 hover:bg-white/30 text-black font-bold rounded-2xl transition-all border border-black/20 flex items-center gap-2">
+        <i data-lucide="send" class="w-5 h-5"></i> Telegramdan Yozish
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
