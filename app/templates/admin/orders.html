@@ -1,0 +1,80 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Buyurtmalar Boshqaruvi | KASSETALAR.UZ Admin{% endblock %}
+{% block header_title %}Buyurtmalar Boshqaruvi{% endblock %}
+
+{% block admin_content %}
+<div class="space-y-6">
+  
+  <!-- Header & Status Filter Pills -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-white">Barcha Buyurtmalar</h2>
+      <p class="text-xs text-gray-400 mt-0.5">Mijozlar tomonidan rasmiylashtirilgan barcha xaridlar</p>
+    </div>
+
+    <!-- Status filter tabs -->
+    <div class="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 text-xs">
+      <a href="/admin/orders" class="px-3 py-1.5 rounded-lg {% if not status_filter %}bg-amber-500 text-black font-bold{% else %}bg-gray-800 text-gray-400 hover:text-white{% endif %}">Barchasi</a>
+      <a href="/admin/orders?status=yangi" class="px-3 py-1.5 rounded-lg {% if status_filter == 'yangi' %}bg-blue-500 text-white font-bold{% else %}bg-gray-800 text-gray-400 hover:text-white{% endif %}">Yangi</a>
+      <a href="/admin/orders?status=tayyorlanmoqda" class="px-3 py-1.5 rounded-lg {% if status_filter == 'tayyorlanmoqda' %}bg-amber-500 text-black font-bold{% else %}bg-gray-800 text-gray-400 hover:text-white{% endif %}">Tayyorlanmoqda</a>
+      <a href="/admin/orders?status=yolda" class="px-3 py-1.5 rounded-lg {% if status_filter == 'yolda' %}bg-indigo-500 text-white font-bold{% else %}bg-gray-800 text-gray-400 hover:text-white{% endif %}">Kuryerda</a>
+      <a href="/admin/orders?status=yetkazildi" class="px-3 py-1.5 rounded-lg {% if status_filter == 'yetkazildi' %}bg-emerald-500 text-white font-bold{% else %}bg-gray-800 text-gray-400 hover:text-white{% endif %}">Yetkazildi</a>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="bg-[#161920] border border-gray-800 rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-gray-900/80 text-gray-400 uppercase tracking-wider border-b border-gray-800">
+          <tr>
+            <th class="py-3.5 px-4">Buyurtma ID</th>
+            <th class="py-3.5 px-4">Sana</th>
+            <th class="py-3.5 px-4">Mijoz & Telefon</th>
+            <th class="py-3.5 px-4">Yetkazish Manzili</th>
+            <th class="py-3.5 px-4">Summa</th>
+            <th class="py-3.5 px-4">To'lov</th>
+            <th class="py-3.5 px-4">Buyurtma Holati</th>
+            <th class="py-3.5 px-4 text-right">Boshqarish</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-800">
+          {% for o in orders %}
+          <tr class="hover:bg-gray-800/30 transition-colors">
+            <td class="py-3.5 px-4 font-mono font-bold text-white">#{{ o.order_number }}</td>
+            <td class="py-3.5 px-4 text-gray-400">{{ o.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+            <td class="py-3.5 px-4">
+              <div class="font-semibold text-white">{{ o.customer_name }}</div>
+              <a href="tel:{{ o.customer_phone }}" class="text-[11px] text-amber-500 font-mono hover:underline">{{ o.customer_phone }}</a>
+            </td>
+            <td class="py-3.5 px-4 text-gray-300 max-w-xs truncate">{{ o.region }}, {{ o.address }}</td>
+            <td class="py-3.5 px-4 font-mono font-bold text-white">{{ "{:,}".format(o.total_amount) }} so'm</td>
+            <td class="py-3.5 px-4">
+              <span class="uppercase text-[10px] font-bold px-2 py-0.5 rounded {% if o.payment_status == 'tolandi' %}bg-emerald-500/20 text-emerald-400 border border-emerald-500/30{% else %}bg-gray-800 text-gray-400{% endif %}">
+                {{ o.payment_method }} ({{ o.payment_status }})
+              </span>
+            </td>
+            <td class="py-3.5 px-4">
+              <span class="px-2.5 py-1 rounded-full font-semibold text-[10px] border {{ o.status_badge_class }}">
+                {{ o.status_label }}
+              </span>
+            </td>
+            <td class="py-3.5 px-4 text-right">
+              <a href="/admin/orders/{{ o.id }}" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors">
+                Tafsilot &rarr;
+              </a>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="8" class="py-12 text-center text-gray-500">Hech qanday buyurtma topilmadi</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
