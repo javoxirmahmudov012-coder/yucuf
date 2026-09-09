@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Bog'lanish & Manzil — UZRETRO.UZ{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+  
+  <div class="text-center space-y-3">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest">
+      <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Aloqa & Manzil
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-white">Biz Bilan Bog'laning</h1>
+    <p class="text-xs text-gray-400 max-w-sm mx-auto">
+      Kassetalarni topshirish, kuryer chaqirish yoki narxlar bo'yicha savollaringiz bormi?
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Contact Info Cards (Col 5) -->
+    <div class="lg:col-span-5 space-y-4">
+      
+      <div class="p-6 bg-[#08202d] border border-[#143a4d] rounded-2xl space-y-3 shadow-lg">
+        <div class="flex items-center gap-3 text-amber-400">
+          <i data-lucide="phone" class="w-5 h-5"></i>
+          <h3 class="text-sm font-bold text-white">Telefon raqamimiz</h3>
+        </div>
+        <p class="text-xs text-gray-400">Har kuni soat 09:00 dan 21:00 gacha</p>
+        <a href="tel:+998877700233" class="text-sm font-bold text-amber-400 hover:underline block font-mono">87-770-02-33</a>
+      </div>
+
+      <div class="p-6 bg-[#08202d] border border-[#143a4d] rounded-2xl space-y-3 shadow-lg">
+        <div class="flex items-center gap-3 text-cyan-400">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <h3 class="text-sm font-bold text-white">Telegram & Instagram</h3>
+        </div>
+        <p class="text-xs text-gray-400">Tezkor xabarlar va maslahatlar</p>
+        <div class="space-y-1">
+          <a href="https://instagram.com/uzretrouz" target="_blank" class="text-xs font-bold text-amber-400 hover:underline block">Instagram: @uzretrouz (31.8k)</a>
+          <a href="https://t.me/uzretrouz" target="_blank" class="text-xs font-bold text-cyan-400 hover:underline block">Telegram: @uzretrouz</a>
+        </div>
+      </div>
+
+      <div class="p-6 bg-[#08202d] border border-[#143a4d] rounded-2xl space-y-3 shadow-lg">
+        <div class="flex items-center gap-3 text-emerald-400">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>
+          <h3 class="text-sm font-bold text-white">Laboratoriya Manzili</h3>
+        </div>
+        <p class="text-xs text-gray-300">Toshkent shahri, Chilonzor tumani, Qatortol ko'chasi 60B, Biznes Markazi binosi</p>
+        <p class="text-[11px] text-amber-300">Mo'ljal: Parus binosi</p>
+      </div>
+
+    </div>
+
+    <!-- Contact Form (Col 7) -->
+    <div class="lg:col-span-7 bg-[#08202d] border border-[#143a4d] rounded-3xl p-8 space-y-6 shadow-2xl">
+      <h3 class="text-base font-bold text-white uppercase tracking-wider">Kuryer Chaqirish / Xabar Qoldirish</h3>
+      
+      <form onsubmit="event.preventDefault(); alert('Arizangiz qabul qilindi! Operatorimiz 15 daqiqa ichida siz bilan bog\'lanadi.'); this.reset();" class="space-y-4">
+        <div>
+          <label class="block text-xs text-gray-400 mb-1.5">Ismingiz *</label>
+          <input type="text" required placeholder="Ismingizni kiriting" class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 mb-1.5">Telefon raqamingiz *</label>
+          <input type="tel" required placeholder="+998 (90) 123-45-67" class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 mb-1.5">Kassetalar soni va manzilingiz *</label>
+          <textarea required rows="4" placeholder="Nechta VHS/audio kasseta topshirmoqchisiz va manzilingiz (kuryer kelib olib ketishi uchun)..." class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl shadow-lg transition-colors">
+          Arizani Yuborish
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
