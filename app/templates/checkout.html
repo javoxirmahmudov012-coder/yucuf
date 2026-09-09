@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+
+{% block title %}Buyurtma Rasmiylashtirish — UZRETRO.UZ{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  
+  <!-- Breadcrumbs & Header -->
+  <div>
+    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+      <a href="/" class="hover:text-amber-400">Bosh sahifa</a>
+      <span>/</span>
+      <a href="/cart" class="hover:text-amber-400">Savat</a>
+      <span>/</span>
+      <span class="text-amber-400">Checkout</span>
+    </div>
+    <h1 class="text-3xl font-black text-white">Buyurtmani Rasmiylashtirish</h1>
+    <p class="text-xs text-gray-400 mt-1">Yetkazib berish ma'lumotlarini to'ldiring va to'lov usulini tanlang</p>
+  </div>
+
+  <form id="checkout-form" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Left Column: Customer & Delivery & Payment Forms (Col 7) -->
+    <div class="lg:col-span-7 space-y-6">
+      
+      <!-- 1. Customer Info -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4 shadow-xl">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-black text-xs font-black flex items-center justify-center">1</span>
+          Mijoz Ma'lumotlari
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Ism va Familiya *</label>
+            <input 
+              type="text" 
+              id="order-name" 
+              required 
+              placeholder="Masalan: Sardor Rahimov" 
+              class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Telefon raqami (Telegram ulangan) *</label>
+            <input 
+              type="tel" 
+              id="order-phone" 
+              required 
+              placeholder="+998 (90) 123-45-67" 
+              class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 font-mono"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Telegram username yoki Email (Fayllarni yuborish uchun)</label>
+          <input 
+            type="text" 
+            id="order-email" 
+            placeholder="@username yoki example@mail.uz" 
+            class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+          >
+        </div>
+      </div>
+
+      <!-- 2. Delivery Address / Courier Pickup -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4 shadow-xl">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-black text-xs font-black flex items-center justify-center">2</span>
+          Kuryer Olib Ketish & Yetkazib Berish Manzili
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Viloyat / Shahar *</label>
+            <select id="order-region" class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white focus:outline-none focus:border-amber-400">
+              <option value="Toshkent shahri" selected>Toshkent shahri (25 000 so'm)</option>
+              <option value="Toshkent viloyati">Toshkent viloyati (40 000 so'm)</option>
+              <option value="Samarqand">Samarqand viloyati (40 000 so'm)</option>
+              <option value="Farg'ona">Farg'ona viloyati (40 000 so'm)</option>
+              <option value="Andijon">Andijon viloyati (40 000 so'm)</option>
+              <option value="Namangan">Namangan viloyati (40 000 so'm)</option>
+              <option value="Buxoro">Buxoro viloyati (40 000 so'm)</option>
+              <option value="Xorazm">Xorazm viloyati (40 000 so'm)</option>
+              <option value="Qashqadaryo">Qashqadaryo viloyati (40 000 so'm)</option>
+              <option value="Surxondaryo">Surxondaryo viloyati (40 000 so'm)</option>
+              <option value="Navoiy">Navoiy viloyati (40 000 so'm)</option>
+              <option value="Jizzax">Jizzax viloyati (40 000 so'm)</option>
+              <option value="Sirdaryo">Sirdaryo viloyati (40 000 so'm)</option>
+              <option value="Qoraqalpog'iston">Qoraqalpog'iston Respublikasi (40 000 so'm)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Tuman / Shaharcha</label>
+            <input 
+              type="text" 
+              id="order-district" 
+              placeholder="Masalan: Chilonzor tumani" 
+              class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 font-medium mb-1.5">Aniq manzil (Ko'cha, uy, xonadon) *</label>
+          <input 
+            type="text" 
+            id="order-address" 
+            required 
+            placeholder="Masalan: Bunyodkor shoh ko'chasi, 12-uy, 45-xonadon" 
+            class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+          >
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Mo'ljal</label>
+            <input 
+              type="text" 
+              id="order-landmark" 
+              placeholder="Masalan: Mirzo Ulug'bek metrosi" 
+              class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs text-gray-300 font-medium mb-1.5">Kassetalar haqida izoh (VHS soni, to'y yili)</label>
+            <input 
+              type="text" 
+              id="order-notes" 
+              placeholder="Masalan: 2 ta VHS to'y kassetasi, 1996-yil, 64GB fleshka kerak" 
+              class="w-full bg-[#05141c] border border-[#1b4d68] rounded-xl py-3 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+            >
+          </div>
+        </div>
+
+        <!-- Delivery Speed -->
+        <div class="border-t border-[#143a4d] pt-4">
+          <label class="block text-xs text-gray-300 font-bold uppercase tracking-wider mb-3">Xizmat va Yetkazish tezligi</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3.5 bg-[#05141c] rounded-xl border border-[#1b4d68] hover:border-amber-500 cursor-pointer">
+              <input type="radio" name="delivery_method" value="standard" checked class="text-amber-500">
+              <div>
+                <span class="text-xs font-bold text-white block">Standart Xizmat</span>
+                <span class="text-[11px] text-gray-400">24-48 soat ichida tayyorlanadi</span>
+              </div>
+            </label>
+
+            <label class="flex items-center gap-3 p-3.5 bg-[#05141c] rounded-xl border border-[#1b4d68] hover:border-amber-500 cursor-pointer">
+              <input type="radio" name="delivery_method" value="express" class="text-amber-500">
+              <div>
+                <span class="text-xs font-bold text-white block">Tezkor Express (45 000 so'm)</span>
+                <span class="text-[11px] text-gray-400">Kun ichida tayyorlab yetkazish</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Payment Method -->
+      <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4 shadow-xl">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-black text-xs font-black flex items-center justify-center">3</span>
+          To'lov Usuli
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Kartaga o'tkazish (Humo) -->
+          <label class="relative p-4 bg-[#05141c] rounded-2xl border-2 border-[#1b4d68] hover:border-cyan-500 cursor-pointer flex flex-col justify-between has-[:checked]:border-cyan-400 has-[:checked]:bg-cyan-950/20 transition-all">
+            <input type="radio" name="payment_method" value="card_transfer" checked class="sr-only">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-black text-cyan-400">💳 KARTAGA</span>
+              <div class="w-4 h-4 rounded-full border-2 border-cyan-400 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+              </div>
+            </div>
+            <p class="text-[11px] text-gray-400">Humo kartaga o'tkazish</p>
+          </label>
+
+          <!-- Naqd kuryerga -->
+          <label class="relative p-4 bg-[#05141c] rounded-2xl border-2 border-[#1b4d68] hover:border-emerald-500 cursor-pointer flex flex-col justify-between has-[:checked]:border-emerald-400 has-[:checked]:bg-emerald-950/20 transition-all">
+            <input type="radio" name="payment_method" value="cash" class="sr-only">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-black text-emerald-400">💵 KURYERGA</span>
+              <div class="w-4 h-4 rounded-full border-2 border-emerald-400 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+              </div>
+            </div>
+            <p class="text-[11px] text-gray-400">Fleshkani olganda naqd to'lash</p>
+          </label>
+
+          <!-- Ofisda to'lash -->
+          <label class="relative p-4 bg-[#05141c] rounded-2xl border-2 border-[#1b4d68] hover:border-amber-500 cursor-pointer flex flex-col justify-between has-[:checked]:border-amber-400 has-[:checked]:bg-amber-950/20 transition-all">
+            <input type="radio" name="payment_method" value="office" class="sr-only">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-black text-amber-400">🏢 OFISDA</span>
+              <div class="w-4 h-4 rounded-full border-2 border-amber-400 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+              </div>
+            </div>
+            <p class="text-[11px] text-gray-400">Ofisga kelib to'lash</p>
+          </label>
+        </div>
+
+        <!-- Karta ma'lumotlari (Kartaga tanlanganda ko'rinadi) -->
+        <div id="card-info-block" class="bg-[#05141c] border border-cyan-500/30 rounded-2xl p-5 space-y-3 mt-2">
+          <p class="text-xs font-bold text-cyan-400 uppercase tracking-wider">💳 Humo karta raqami:</p>
+          <div class="flex items-center gap-3">
+            <code class="text-xl font-black text-white tracking-widest bg-[#08202d] px-4 py-2.5 rounded-xl border border-[#1b4d68] select-all">9860 1666 5639 3013</code>
+            <button type="button" onclick="navigator.clipboard.writeText('9860166656393013'); this.textContent='✅ Nusxalandi!'; setTimeout(()=>this.textContent='📋 Nusxalash', 2000)" class="px-3 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-bold rounded-lg border border-cyan-500/30 transition-all">📋 Nusxalash</button>
+          </div>
+          <p class="text-xs text-gray-400">Karta egasi: <b class="text-white">Makhmudov</b> (Humo)</p>
+          <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 mt-2">
+            <p class="text-[11px] text-amber-300">⚠️ To'lovni amalga oshirgach, chekni <b>Telegram @uzretrouz</b> ga yuboring yoki <b>87-770-02-33</b> raqamiga qo'ng'iroq qiling.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Right Column: Order Summary & Pay Action (Col 5) -->
+    <div class="lg:col-span-5 bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-6 sticky top-28 shadow-2xl">
+      
+      <h3 class="text-base font-bold text-white uppercase tracking-wider border-b border-[#143a4d] pb-3">Buyurtma Tarkibi</h3>
+
+      <!-- Items List -->
+      <div id="checkout-cart-items" class="max-h-60 overflow-y-auto space-y-3">
+        <!-- Loaded via checkout.js -->
+      </div>
+
+      <!-- Promo code field -->
+      <div class="border-t border-[#143a4d] pt-4">
+        <label class="block text-xs text-gray-400 mb-1.5">Promokod bormi?</label>
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            id="promo-code-input" 
+            placeholder="RETRO10" 
+            class="flex-1 bg-[#05141c] border border-[#1b4d68] rounded-xl py-2 px-3 text-xs uppercase text-white font-mono"
+          >
+          <button 
+            type="button" 
+            id="apply-promo-btn" 
+            class="px-4 py-2 bg-[#103449] hover:bg-[#184d6c] text-amber-400 font-bold text-xs rounded-xl border border-[#1d597d] transition-colors"
+          >
+            Qo'llash
+          </button>
+        </div>
+        <span id="promo-msg" class="hidden"></span>
+      </div>
+
+      <!-- Totals Breakdown -->
+      <div class="space-y-3 text-xs border-t border-[#143a4d] pt-4">
+        <div class="flex justify-between text-gray-400">
+          <span>Xizmatlar summasi:</span>
+          <span id="checkout-items-total" class="font-bold text-white">0 so'm</span>
+        </div>
+        
+        <div class="flex justify-between text-gray-400">
+          <span>Kuryer olib ketish/yetkazish:</span>
+          <span id="checkout-delivery-fee" class="text-gray-300 font-semibold">25 000 so'm</span>
+        </div>
+
+        <div id="checkout-discount-row" class="flex justify-between text-emerald-400 hidden">
+          <span>Promokod chegirmasi:</span>
+          <span id="checkout-discount-value" class="font-bold">-0 so'm</span>
+        </div>
+
+        <div class="border-t border-[#143a4d] pt-3 flex justify-between items-baseline">
+          <span class="text-sm font-bold text-white">JAMI TO'LOV:</span>
+          <span id="checkout-grand-total" class="text-2xl font-black text-amber-400 font-mono">0 so'm</span>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        id="checkout-submit-btn" 
+        class="w-full py-4 bg-amber-500 hover:bg-amber-400 active:scale-95 text-black font-black text-sm rounded-xl transition-all shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2"
+      >
+        <i data-lucide="check-circle" class="w-5 h-5"></i>
+        <span>Buyurtmani Tasdiqlash</span>
+      </button>
+
+      <p class="text-[11px] text-gray-400 text-center leading-relaxed">
+        "Buyurtmani Tasdiqlash" tugmasini bosish orqali UZRETRO.UZ <a href="/faq" class="text-amber-400 hover:underline">maxfiylik va xizmat shartlariga</a> rozilik bildirasiz.
+      </p>
+
+    </div>
+
+  </form>
+
+</div>
+
+<script src="/static/js/checkout.js"></script>
+<script>
+// Karta blokini faqat "Kartaga" tanlanganda ko'rsatish
+document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const cardBlock = document.getElementById('card-info-block');
+    if (cardBlock) {
+      cardBlock.style.display = radio.value === 'card_transfer' ? 'block' : 'none';
+    }
+  });
+});
+</script>
+{% endblock %}
