@@ -10,6 +10,8 @@ if sys.stdout.encoding != 'utf-8':
 CURRENT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(CURRENT_DIR))
 
+from app.main import app
+
 if __name__ == "__main__":
     print("=" * 65)
     print(">>>  UZRETRO.UZ — Video & Audio Kassetalar Raqamlashtirish")
