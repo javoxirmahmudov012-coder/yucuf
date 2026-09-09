@@ -1,0 +1,48 @@
+# ============================================================
+#  UZRETRO.UZ — .gitignore
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Muhit o'zgaruvchilari — HECH QACHON yuklamang!
+.env
+*.env
+
+# Ma'lumotlar bazasi — local faqat
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Tizim fayllar
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test va vaqtinchalik
+test_store.py
+run_kassetalar.py
+*.log
+*.tmp
+
+# Build
+dist/
+build/
+*.egg-info/
