@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Savat — Xarid savatingiz | UZRETRO.UZ{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  
+  <!-- Breadcrumbs & Header -->
+  <div>
+    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+      <a href="/" class="hover:text-amber-400">Bosh sahifa</a>
+      <span>/</span>
+      <span class="text-amber-400">Savat</span>
+    </div>
+    <h1 class="text-3xl font-black text-white">Xarid Savati</h1>
+  </div>
+
+  <!-- Main Cart Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Items List (Col 8) -->
+    <div class="lg:col-span-8 space-y-4">
+      <div id="cart-page-items-container" class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-4 shadow-xl">
+        <!-- Loaded via JavaScript -->
+        <div class="py-12 text-center text-gray-500">
+          <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-3 opacity-30"></i>
+          <p>Yuklanmoqda...</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <a href="/catalog" class="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Xizmatlarni davom ettirish
+        </a>
+        <button onclick="window.cartManager.clearCart(); renderCartPage();" class="text-xs text-gray-500 hover:text-red-400">
+          Savatni tozalash
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary Card (Col 4) -->
+    <div class="lg:col-span-4 bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 space-y-6 shadow-2xl sticky top-28">
+      <h3 class="text-base font-bold text-white uppercase tracking-wider border-b border-[#143a4d] pb-3">Buyurtma Xulosasi</h3>
+
+      <!-- Free delivery progress bar -->
+      <div id="free-delivery-box" class="p-4 bg-[#05141c] rounded-xl border border-[#1b4d68] space-y-2">
+        <div class="flex items-center justify-between text-xs">
+          <span id="free-delivery-text" class="text-gray-300 font-medium">Bepul kuryergacha:</span>
+          <span id="free-delivery-diff" class="text-amber-400 font-bold">0 so'm</span>
+        </div>
+        <div class="w-full bg-[#08202d] h-2 rounded-full overflow-hidden">
+          <div id="free-delivery-progress" class="bg-gradient-to-r from-amber-500 to-emerald-400 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="flex justify-between text-gray-400">
+          <span>Xizmatlar summasi:</span>
+          <span id="cart-page-subtotal" class="font-bold text-white">0 so'm</span>
+        </div>
+        <div class="flex justify-between text-gray-400">
+          <span>Kuryer (taxminiy):</span>
+          <span id="cart-page-delivery-est" class="text-gray-300">25 000 so'm</span>
+        </div>
+        <div class="border-t border-[#143a4d] pt-3 flex justify-between items-baseline">
+          <span class="text-sm font-bold text-white">Jami to'lov:</span>
+          <span id="cart-page-grand-total" class="text-xl font-black text-amber-400 font-mono">0 so'm</span>
+        </div>
+      </div>
+
+      <a href="/checkout" class="w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-black text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+        <span>Buyurtmani rasmiylashtirish</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+
+      <div class="pt-2 text-[11px] text-gray-400 text-center space-y-1">
+        <p>🔒 100% Maxfiylik va sifat kafolati</p>
+        <p>Payme, Click va qabul qilganda to'lov</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function renderCartPage() {
+    const container = document.getElementById('cart-page-items-container');
+    const subtotalEl = document.getElementById('cart-page-subtotal');
+    const deliveryEstEl = document.getElementById('cart-page-delivery-est');
+    const grandTotalEl = document.getElementById('cart-page-grand-total');
+    const progressEl = document.getElementById('free-delivery-progress');
+    const diffEl = document.getElementById('free-delivery-diff');
+    const freeTextEl = document.getElementById('free-delivery-text');
+
+    if (!window.cartManager) return;
+    const cart = window.cartManager.cart;
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <div class="py-16 text-center space-y-4">
+          <div class="w-16 h-16 rounded-full bg-[#05141c] border border-[#1b4d68] flex items-center justify-center text-gray-500 mx-auto">
+            <i data-lucide="shopping-cart" class="w-8 h-8 text-amber-400"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Savatingiz bo'sh</h3>
+          <p class="text-xs text-gray-400 max-w-sm mx-auto">Siz hali hech qanday xizmat yoki kasseta tanlamadingiz.</p>
+          <a href="/catalog" class="inline-block px-6 py-3 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl transition-colors shadow">
+            Tariflarni ko'rish
+          </a>
+        </div>
+      `;
+      subtotalEl.innerText = "0 so'm";
+      grandTotalEl.innerText = "0 so'm";
+      progressEl.style.width = "0%";
+      diffEl.innerText = "300 000 so'm";
+      lucide.createIcons();
+      return;
+    }
+
+    const subtotal = window.cartManager.getTotalPrice();
+    const threshold = 300000;
+    const deliveryFee = subtotal >= threshold ? 0 : 25000;
+
+    let html = '';
+    cart.forEach(item => {
+      html += `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-[#05141c] rounded-xl border border-[#1b4d68]">
+          <div class="flex items-center gap-4">
+            <img src="${item.image_url}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg flex-shrink-0">
+            <div>
+              <span class="text-[10px] text-amber-400 uppercase font-bold tracking-wider">${item.genre || 'UZRETRO'}</span>
+              <h4 class="text-sm font-bold text-white">${item.title}</h4>
+              <p class="text-xs text-gray-400 mt-0.5">${(item.price).toLocaleString()} so'm / dona</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 border-[#143a4d] pt-3 sm:pt-0">
+            <div class="flex items-center bg-[#08202d] border border-[#1b4d68] rounded-lg">
+              <button onclick="window.cartManager.updateQuantity(${item.id}, ${item.quantity - 1}); renderCartPage();" class="px-2.5 py-1 text-gray-400 hover:text-white">-</button>
+              <span class="px-2.5 py-1 text-xs font-bold text-white">${item.quantity}</span>
+              <button onclick="window.cartManager.updateQuantity(${item.id}, ${item.quantity + 1}); renderCartPage();" class="px-2.5 py-1 text-gray-400 hover:text-white">+</button>
+            </div>
+
+            <div class="text-right min-w-[90px]">
+              <span class="text-sm font-black text-amber-400">${(item.price * item.quantity).toLocaleString()} so'm</span>
+            </div>
+
+            <button onclick="window.cartManager.removeItem(${item.id}); renderCartPage();" class="text-gray-500 hover:text-red-400 p-1">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+    subtotalEl.innerText = `${subtotal.toLocaleString()} so'm`;
+    deliveryEstEl.innerText = deliveryFee === 0 ? "BEPUL" : `${deliveryFee.toLocaleString()} so'm`;
+    grandTotalEl.innerText = `${(subtotal + deliveryFee).toLocaleString()} so'm`;
+
+    const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
+    progressEl.style.width = `${pct}%`;
+
+    if (subtotal >= threshold) {
+      freeTextEl.innerText = "Yetkazib berish BEPUL!";
+      diffEl.innerText = "✓";
+      diffEl.className = "text-emerald-400 font-bold";
+    } else {
+      const diff = threshold - subtotal;
+      freeTextEl.innerText = "Bepul kuryergacha:";
+      diffEl.innerText = `${diff.toLocaleString()} so'm`;
+      diffEl.className = "text-amber-400 font-bold";
+    }
+
+    lucide.createIcons();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(renderCartPage, 100);
+  });
+</script>
+{% endblock %}
