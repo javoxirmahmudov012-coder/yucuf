@@ -1,0 +1,103 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Tizim Sozlamalari | KASSETALAR.UZ Admin{% endblock %}
+{% block header_title %}Do'kon va Integratsiya Sozlamalari{% endblock %}
+
+{% block admin_content %}
+<div class="max-w-4xl mx-auto space-y-8">
+  
+  <div>
+    <h2 class="text-xl font-bold text-white">Do'kon Sozlamalari</h2>
+    <p class="text-xs text-gray-400 mt-0.5">To'lov shlyuzlari (Payme/Click), Telegram xabarnomalar va yetkazib berish tariflari</p>
+  </div>
+
+  <form action="/admin/settings/save" method="POST" class="space-y-6">
+    
+    <!-- 1. Telegram Bot Notifications -->
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl p-6 space-y-4">
+      <div class="flex items-center gap-2 text-cyan-400">
+        <i data-lucide="send" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Telegram Xabarnomalar (Admin & Kuryer)</h3>
+      </div>
+      <p class="text-xs text-gray-400">
+        Saytda har bir yangi buyurtma yoki to'lov bo'lganda Telegram guruh/adminga lahzada to'liq xabar yuboriladi.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Telegram Bot Token (@BotFather)</label>
+          <input type="text" name="telegram_bot_token" value="{{ settings.TELEGRAM_BOT_TOKEN or '' }}" placeholder="8854201518:AAF..." class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Admin / Guruh Chat ID</label>
+          <input type="text" name="telegram_admin_chat_id" value="{{ settings.TELEGRAM_ADMIN_CHAT_ID or '' }}" placeholder="-1001234567890 yoki 123456789" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Delivery Rates -->
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl p-6 space-y-4">
+      <div class="flex items-center gap-2 text-amber-500">
+        <i data-lucide="truck" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Yetkazib Berish Tariflari (So'mda)</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Toshkent Shahri Ichida</label>
+          <input type="number" name="delivery_tashkent_price" value="{{ settings.DELIVERY_TASHKENT_PRICE }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Viloyatlar Bo'yicha (Fargo/BTS)</label>
+          <input type="number" name="delivery_regions_price" value="{{ settings.DELIVERY_REGIONS_PRICE }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Bepul Yetkazish Chegarasi (so'm)</label>
+          <input type="number" name="free_delivery_threshold" value="{{ settings.FREE_DELIVERY_THRESHOLD }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Payme & Click Merchant Keys -->
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl p-6 space-y-4">
+      <div class="flex items-center gap-2 text-emerald-400">
+        <i data-lucide="credit-card" class="w-5 h-5"></i>
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">To'lov Tizimlari Kalitlari</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Payme Merchant ID</label>
+          <input type="text" name="payme_merchant_id" value="{{ settings.PAYME_MERCHANT_ID }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Payme Secret Key</label>
+          <input type="text" name="payme_key" value="{{ settings.PAYME_KEY }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Click Service ID</label>
+          <input type="text" name="click_service_id" value="{{ settings.CLICK_SERVICE_ID }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-medium mb-1">Click Merchant ID</label>
+          <input type="text" name="click_merchant_id" value="{{ settings.CLICK_MERCHANT_ID }}" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-white font-mono">
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end pt-2">
+      <button type="submit" class="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs rounded-xl shadow-lg transition-colors">
+        Barcha Sozlamalarni Saqlash
+      </button>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}
