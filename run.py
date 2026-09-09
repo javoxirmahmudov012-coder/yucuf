@@ -20,12 +20,13 @@ if __name__ == "__main__":
     print(">>>  Admin Panel:         http://127.0.0.1:8000/admin")
     print(">>>  Payme Webhook:       http://127.0.0.1:8000/payme")
     print(">>>  Click Webhook:       http://127.0.0.1:8000/click/prepare")
-    print(">>>  Buyurtmani kuzatish: http://127.0.0.1:8000/tracking")
+    port = int(os.getenv("PORT", 8000))
+    print(f">>>  Server porti:         {port}")
     print("=" * 65)
 
     uvicorn.run(
         "app.main:app",
         host="0.0.0.0",
-        port=8000,
+        port=port,
         reload=False
     )
