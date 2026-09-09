@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Buyurtma Qabul Qilindi #{{ order.order_number }} | UZRETRO.UZ{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+  
+  <!-- Success Hero Banner -->
+  <div class="text-center space-y-4">
+    <div class="w-16 h-16 bg-emerald-500/10 border-2 border-emerald-500/40 rounded-3xl flex items-center justify-center text-emerald-400 mx-auto shadow-xl shadow-emerald-500/10">
+      <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+    </div>
+    
+    <h1 class="text-3xl sm:text-4xl font-black text-white">Buyurtmangiz Qabul Qilindi!</h1>
+    <p class="text-sm text-gray-400 max-w-md mx-auto">
+      Rahmat, <b>{{ order.customer_name }}</b>! Buyurtmangiz tizimga muvaffaqiyatli kiritildi va tez orada kuryerimiz siz bilan bog'lanadi.
+    </p>
+    
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#05141c] border border-[#1b4d68] rounded-full text-xs font-mono text-amber-400">
+      <span>Buyurtma ID:</span>
+      <b class="text-white">#{{ order.order_number }}</b>
+    </div>
+  </div>
+
+  <!-- Order Progress Stepper -->
+  <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-6 shadow-xl">
+    <div class="grid grid-cols-4 gap-2 text-center">
+      <div class="space-y-1.5">
+        <div class="w-8 h-8 rounded-full bg-emerald-500 text-black font-bold text-xs flex items-center justify-center mx-auto">1</div>
+        <span class="text-[11px] font-bold text-emerald-400 block">Qabul qilindi</span>
+      </div>
+      <div class="space-y-1.5">
+        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-xs flex items-center justify-center mx-auto">2</div>
+        <span class="text-[11px] font-bold text-gray-400 block">Raqamlashtirilmoqda</span>
+      </div>
+      <div class="space-y-1.5">
+        <div class="w-8 h-8 rounded-full bg-[#05141c] text-gray-500 font-bold text-xs flex items-center justify-center mx-auto">3</div>
+        <span class="text-[11px] font-bold text-gray-500 block">Kuryer yo'lda</span>
+      </div>
+      <div class="space-y-1.5">
+        <div class="w-8 h-8 rounded-full bg-[#05141c] text-gray-500 font-bold text-xs flex items-center justify-center mx-auto">4</div>
+        <span class="text-[11px] font-bold text-gray-500 block">Yetkazildi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Electronic Receipt Card (Printable) -->
+  <div class="bg-[#08202d] border border-[#143a4d] rounded-2xl p-8 space-y-6 print:bg-white print:text-black shadow-2xl" id="printable-receipt">
+    
+    <div class="flex items-center justify-between border-b border-[#143a4d] pb-6">
+      <div>
+        <span class="text-xl font-black text-white">UZRETRO<span class="text-amber-400">.UZ</span></span>
+        <p class="text-xs text-gray-400 mt-0.5">Elektron To'lov Cheki / Kvitansiya</p>
+      </div>
+      <div class="text-right text-xs text-gray-400">
+        <div>Sana: <b>{{ order.created_at.strftime('%d.%m.%Y %H:%M') }}</b></div>
+        <div>Holati: <b class="text-emerald-400 uppercase">{{ order.payment_status }}</b></div>
+      </div>
+    </div>
+
+    <!-- Customer & Delivery Info -->
+    <div class="grid grid-cols-2 gap-6 text-xs">
+      <div>
+        <span class="text-gray-400 block mb-1">Mijoz ma'lumotlari:</span>
+        <p class="font-bold text-white">{{ order.customer_name }}</p>
+        <p class="text-gray-400">{{ order.customer_phone }}</p>
+        <p class="text-gray-400">{{ order.customer_email or '' }}</p>
+      </div>
+      <div>
+        <span class="text-gray-400 block mb-1">Manzil & To'lov:</span>
+        <p class="font-bold text-white">{{ order.region }}, {{ order.district or '' }}, {{ order.address }}</p>
+        <p class="text-amber-400 uppercase font-bold mt-1">To'lov turi: {{ order.payment_method }}</p>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <div class="border-t border-[#143a4d] pt-4">
+      <table class="w-full text-xs text-left">
+        <thead>
+          <tr class="text-gray-400 border-b border-[#143a4d]">
+            <th class="py-2 font-semibold">Xizmat / Mahsulot</th>
+            <th class="py-2 text-center font-semibold">Soni</th>
+            <th class="py-2 text-right font-semibold">Narxi</th>
+            <th class="py-2 text-right font-semibold">Jami</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#143a4d]">
+          {% for item in order.items %}
+          <tr>
+            <td class="py-3 font-medium text-white">{{ item.product_title }}</td>
+            <td class="py-3 text-center text-gray-400">{{ item.quantity }}</td>
+            <td class="py-3 text-right text-gray-400">{{ "{:,}".format(item.price) }} so'm</td>
+            <td class="py-3 text-right font-bold text-white">{{ "{:,}".format(item.subtotal) }} so'm</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Totals Breakdown -->
+    <div class="border-t border-[#143a4d] pt-4 space-y-2 text-xs">
+      <div class="flex justify-between text-gray-400">
+        <span>Xizmatlar summasi:</span>
+        <span class="text-white">{{ "{:,}".format(order.items_total) }} so'm</span>
+      </div>
+      <div class="flex justify-between text-gray-400">
+        <span>Yetkazib berish:</span>
+        <span class="text-white">{{ "{:,}".format(order.delivery_fee) }} so'm</span>
+      </div>
+      {% if order.discount_amount > 0 %}
+      <div class="flex justify-between text-emerald-400">
+        <span>Chegirma:</span>
+        <span>-{{ "{:,}".format(order.discount_amount) }} so'm</span>
+      </div>
+      {% endif %}
+      <div class="flex justify-between text-base font-black text-white pt-2 border-t border-[#143a4d]">
+        <span>JAMI TO'LOV:</span>
+        <span class="text-amber-400">{{ "{:,}".format(order.total_amount) }} so'm</span>
+      </div>
+    </div>
+
+    <!-- Actions in Receipt -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#143a4d] print:hidden">
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="px-4 py-2 bg-[#103449] hover:bg-[#184d6c] text-white text-xs font-bold rounded-xl border border-[#1d597d] flex items-center gap-1.5 transition-colors">
+          <i data-lucide="printer" class="w-4 h-4"></i> Chop etish (Chek)
+        </button>
+        <a href="/tracking?q={{ order.order_number }}" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold rounded-xl shadow transition-colors flex items-center gap-1.5">
+          <i data-lucide="truck" class="w-4 h-4"></i> Buyurtmani kuzatish
+        </a>
+      </div>
+      <a href="/" class="text-xs text-gray-400 hover:text-white underline">
+        Bosh sahifaga qaytish
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // Clear cart after successful checkout
+  if (window.cartManager) {
+    window.cartManager.clearCart();
+  }
+</script>
+{% endblock %}
