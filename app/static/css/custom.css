@@ -1,0 +1,131 @@
+/* Kassetalar Online Store - Vintage Retro Styling */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap');
+
+:root {
+  --retro-amber: #f59e0b;
+  --retro-dark: #0f1115;
+  --retro-card: #181c24;
+  --retro-border: #2e3646;
+  --retro-neon: #ec4899;
+  --retro-cyan: #06b6d4;
+  --retro-tape: #26211d;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  background-color: #0d0f12;
+  color: #f3f4f6;
+}
+
+.font-retro {
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+}
+
+/* Analog Grain Effect */
+.analog-grain {
+  background-image: radial-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Cassette Tape Visual Element */
+.cassette-shell {
+  background: linear-gradient(145deg, #2a2421, #1a1614);
+  border: 4px solid #3d3530;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cassette-label {
+  background: #fdfbf7;
+  color: #1a1614;
+  border-radius: 6px;
+  border: 1px dashed #d1c7bd;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.cassette-window {
+  background: #0d0e11;
+  border: 2px solid #4a3e36;
+  border-radius: 6px;
+  position: relative;
+}
+
+/* Reel Spinning Animation */
+@keyframes spin-reel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning-reel {
+  animation: spin-reel 3s linear infinite;
+}
+
+.spinning-reel-fast {
+  animation: spin-reel 1s linear infinite;
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
+
+/* Glow effects */
+.glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+}
+
+.glow-neon {
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+}
+
+/* Glass effect */
+.glass-panel {
+  background: rgba(24, 28, 36, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1115;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Equalizer Bars */
+@keyframes eq-bounce {
+  0%, 100% { height: 20%; }
+  50% { height: 100%; }
+}
+
+.eq-bar {
+  display: inline-block;
+  width: 3px;
+  background-color: #f59e0b;
+  border-radius: 2px;
+  animation: eq-bounce 1s ease-in-out infinite;
+}
+.eq-bar:nth-child(2) { animation-delay: 0.2s; }
+.eq-bar:nth-child(3) { animation-delay: 0.4s; }
+.eq-bar:nth-child(4) { animation-delay: 0.1s; }
+.eq-bar:nth-child(5) { animation-delay: 0.3s; }
