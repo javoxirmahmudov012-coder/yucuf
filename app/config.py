@@ -10,8 +10,12 @@ class Settings:
     # SECRET_KEY — ishlab chiqarishda albatta o'zgartiring!
     SECRET_KEY: str = os.getenv("SECRET_KEY", "change_this_secret_key_in_production")
 
-    # Ma'lumotlar bazasi
-    DB_FILE: Path = BASE_DIR / "kassetalar.db"
+    # Ma'lumotlar bazasi (Vercel yoki Serverless muhitda /tmp ishlatiladi)
+    if os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME"):
+        DB_FILE: Path = Path("/tmp/kassetalar.db")
+    else:
+        DB_FILE: Path = BASE_DIR / "kassetalar.db"
+
     DATABASE_URL: str = f"sqlite+aiosqlite:///{DB_FILE.as_posix()}"
 
     # Yetkazib berish tariflari (so'mda)
